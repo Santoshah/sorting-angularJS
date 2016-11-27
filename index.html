@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Sorting in Angular JS</title>
+	<title>Sorting with header in Angular JS</title>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="js/script.js"></script>
 </head>
 <body>
 <div ng-app="myApp" ng-controller="sortColumn">
-
+Sort using: 
 <select ng-model="order_col">
 <option value="name">Name</option>
 <option value="gender">Gender</option>
 <option value="salary">Salary</option>
 <option value="dob">Date of Birth</option>
+<option value="salary">Salary</option>
+<option value="employe_id">Employee ID</option>
 </select>
 
 <br>
@@ -22,15 +24,15 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Emp ID</th>
-				<th>Name</th>
-				<th>DateOfBirth</th>
-				<th>Gender</th>
-				<th>Salary</th>
+				<th ng-click="sortData('employe_id')">Emp ID <div ng-class="getSortClass('employe_id')"></div></th>
+				<th ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></th>
+				<th ng-click="sortData('dob')">DateOfBirth <div ng-class="getSortClass('dob')"></div></th>
+				<th ng-click="sortData('gender')">Gender <div ng-class="getSortClass('gender')"></div></th>
+				<th ng-click="sortData('salary')">Salary <div ng-class="getSortClass('salary')"></div></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="employee in employees | orderBy:order_col">
+			<tr ng-repeat="employee in employees | orderBy:order_col:reverseSort">
 				<td>{{employee.employe_id | number:0}}</td>
 				<td>{{employee.name | uppercase}}</td>
 				<td>{{employee.dob | date:"dd/MMM/yyyy"}}</td>

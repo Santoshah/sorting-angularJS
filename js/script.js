@@ -11,4 +11,18 @@ app.controller('sortColumn', ['$scope', function($scope){
 	]
 	$scope.employees = employees;
 	$scope.order_col = "name";
+
+	$scope.reverseSort = false;
+
+	$scope.sortData = function(column){
+		$scope.reverseSort = ($scope.order_col == column) ? !$scope.reverseSort : false;
+		$scope.order_col = column;
+	}
+	$scope.getSortClass = function(column){
+		if($scope.order_col == column) {
+			return $scope.reverseSort ? 'arrow-down' : 'arrow-up';  
+		}
+		return ''
+	}
+
 }])
